@@ -22,21 +22,16 @@ const app = createApp({
                 .then((res) => {
                     // console.log(res);
                     const { token, expired } = res.data;
-                    // console.log(token, expired);
                     document.cookie = `hexToken=${token}; expires=${new Date(expired)};`;
                     // 登入後跳轉頁面
                     window.location.replace("./products.html");
                 })
                 // 失敗的結果
                 .catch((err) => {
-                    // console.dir(err);
-                    alert('帳號或密碼錯誤');
+                    alert('登入失敗，請確認帳號密碼')
                 })
         }
     },
-    // created() {
-
-    // }
 })
 
 app.mount('#app');
