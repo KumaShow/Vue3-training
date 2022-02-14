@@ -3,9 +3,6 @@ import { createApp } from 'https://cdnjs.cloudflare.com/ajax/libs/vue/3.2.27/vue
 const site = 'https://vue3-course-api.hexschool.io/v2';
 const path = 'benson-db';
 
-const token = document.cookie.replace(/(?:(?:^|.*;\s*)hexToken\s*\=\s*([^;]*).*$)|^.*$/, "$1");
-axios.defaults.headers.common['Authorization'] = token;
-
 let productModal = null;
 let delProductModal = null;
 
@@ -23,6 +20,8 @@ const app = createApp({
     methods: {
 
         checkLogin() {
+            const token = document.cookie.replace(/(?:(?:^|.*;\s*)hexToken\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+            axios.defaults.headers.common['Authorization'] = token;
             let url = `${site}/api/user/check`;
             axios.post(url)
                 .then((res) => {
@@ -74,6 +73,9 @@ const app = createApp({
                     // 新增成功後，重新獲得產品資料
                     this.getProducts();
                     productModal.hide();
+                })
+                .catch((err) => {
+                    alert(err.data.message);
                 })
         },
 
