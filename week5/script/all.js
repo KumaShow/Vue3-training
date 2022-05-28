@@ -80,9 +80,9 @@ const app = Vue.createApp({
         },
         // 打開 modal
         openProductModal(id) {
-            this.productId = id;
+            // this.productId = id;
             // 先執行 Modal getProduct 方法
-            this.$refs.productModal.getProduct();
+            this.$refs.productModal.getProduct(id);
         },
         // 取得購物車資料
         getCart() {

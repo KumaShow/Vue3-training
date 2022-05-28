@@ -12,12 +12,12 @@ const productModal = ({
             qty: 1,
         }
     },
-    watch: {
-        // 當 id 變動時觸發
-        id() {
-            this.getProduct();
-        }
-    },
+    // watch: {
+    //     // 當 id 變動時觸發
+    //     id() {
+    //         this.getProduct();
+    //     }
+    // },
     methods: {
         openModal() {
             this.qty = 1;
@@ -26,10 +26,11 @@ const productModal = ({
         hideModal() {
             this.modal.hide();
         },
-        getProduct() {
-            const url = `${apiUrl}/api/${apiPath}/product/${this.id}`;
+        getProduct(id) {
+            const url = `${apiUrl}/api/${apiPath}/product/${id}`;
             axios.get(url).then(res => {
                 this.product = res.data.product;
+                // 抓到產品資料後才顯示，避免打開時顯示上一個產品資料
                 this.openModal()
             })
         },
