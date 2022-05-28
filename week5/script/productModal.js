@@ -30,6 +30,7 @@ const productModal = ({
             const url = `${apiUrl}/api/${apiPath}/product/${this.id}`;
             axios.get(url).then(res => {
                 this.product = res.data.product;
+                this.openModal()
             })
         },
         addToCart() {
@@ -41,7 +42,7 @@ const productModal = ({
     mounted() {
         // ref="modal"
         this.modal = new bootstrap.Modal(this.$refs.modal);
-    },
+    }
 })
 
 export {
